@@ -26,7 +26,7 @@ def main() -> None:
 
     game_map = GameMap(map_width, map_height)
 
-    engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player)
+    engine = Engine(entities=entities, event_handler=event_handler, game_map=game_map, player=player) 
 
     with tcod.context.new_terminal(
         screen_width,
@@ -35,14 +35,15 @@ def main() -> None:
         title="Yet Another Roguelike Tutorial",
         vsync=True,
     ) as context:
-        root_console = tcod.Console(screen_width, screen_height, order="F")
+        root_console = tcod.console.Console(screen_width, screen_height, order="F")
         while True:
-            engine.render(console=root_console, context=context)
+            engine.render(console=root_console, context=context) 
 
             events = tcod.event.wait()
 
-            engine.handle_events(events)
+            root_console.clear()
 
+            engine.handle_events(events) 
 
 if __name__ == "__main__":
     main()
